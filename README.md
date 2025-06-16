@@ -23,5 +23,5 @@ Kaggle Datasets
 OpenAI ChatGPT (for brainstorming & support)
 
  Maintained by
-Shirsha Nag (aka Toto Wolf)
+Shirsha Nag 
 💼 Student | 📡 IoT + Quantum Computing Enthusiast | 🧠 ML Learner
