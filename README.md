@@ -4,7 +4,8 @@ A collection of Python projects for learning and experimentation. Each folder co
 
 ## 📁 List of Projects
 - 🛍️ `product-purchaser-knn`: Predicts customer purchase decisions using KNN  
-- 🧮 `calculator`: A simple calculator GUI using Tkinter  
+- 🧮 `calculator`: A simple calculator GUI using Tkinter
+- `Sonar vs Rock prediction system`:A machine-learning model used by submarine to detect wether it is a Sonar mine or Rock 
 
 ## ▶️ How to Use
 
