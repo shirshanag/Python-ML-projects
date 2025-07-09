@@ -50,12 +50,7 @@ Performance Evaluation:
 - Matplotlib (optional for visualization)
 
   
-  sonic-classifier/
-│
-├── sonar.csv                  # Dataset file
-├── sonic_classifier.py        # Main Python script
-├── requirements.txt           # Required packages
-└── README.md                  # Project documentation
+
 
 👨‍💻 Author
 Shirsha Nag
