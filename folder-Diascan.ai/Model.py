@@ -37,3 +37,31 @@ print("Accuracy on train data:",x_train_accuracy)
 x_test_predict=model.predict(X_test)
 x_test_accuracy=accuracy_score(x_test_predict,y_test)
 print("Accuracy on test data:",x_test_accuracy)
+#Building a Predictive system
+input_data=(5,109,75,26,0,36,0.546,60)
+input_data_as_array=np.asarray(input_data)
+input_data_reshaped=input_data_as_array.reshape(1,-1)
+#standardise the input data
+std_data=scaler.transform(input_data_reshaped)
+
+prediction=model.predict(std_data)
+
+print(prediction[0])
+if(prediction[0]==0):
+  print("The person is not diabetic")
+else:
+  print("The person is diabetic")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
