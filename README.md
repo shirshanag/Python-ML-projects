@@ -6,7 +6,10 @@ A collection of Python projects for learning and experimentation. Each folder co
 - 🛍️ `product-purchaser-knn`: Predicts customer purchase decisions using KNN  
 - 🧮 `calculator`: A simple calculator GUI using Tkinter
 - `Sonar-Classifer a Sonar vs Rock prediction system`:A machine-learning model used by submarine to detect wether it is a Sonar mine or Rock
-- `DiaScan.ai`: A machine learning model to predict the diabetes of female patient 
+- `DiaScan.ai`: A machine learning model to predict the diabetes of female patient.
+-  `LegitScan`: A machine learning system to predict wether the transaction is legitimate or not.
+-  `SpamShield`: A machine learning system to detect spam email
+
 
 ## ▶️ How to Use
 
