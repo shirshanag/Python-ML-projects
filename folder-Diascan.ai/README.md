@@ -1,6 +1,6 @@
 # Diascan.ai 🩺 - Diabetes Prediction System for Females using SVM
 
-**Diascan.ai** is a machine learning project focused on predicting diabetes in female patients using data from the PIMA Indian Diabetes dataset. The model is built with a Support Vector Machine (SVM) classifier and optimized for medical relevance, using proper feature scaling and metric-based evaluation.
+**Diascan.ai** is a machine learning project focused on predicting diabetes in female patients using data from the PIMA Indian Diabetes dataset. The model is built with a Random Forest  and optimized for medical relevance, using proper feature scaling and metric-based evaluation.
 
 ---
 
@@ -14,10 +14,10 @@ Early detection of diabetes is crucial for improving health outcomes. This proje
 
 - **Language**: Python  
 - **Libraries**: `scikit-learn`, `pandas`, `matplotlib`, `seaborn`  
-- **Model**: Support Vector Machine (SVM)  
+- **Model**: Random Forest Classifier  
 - **Evaluation**: F1-score, Confusion Matrix, Accuracy, Recall  
 - **Scaling**: StandardScaler  
-- **Dataset**: PIMA Indian Diabetes dataset (UCI)
+- **Dataset**: Kaggle
 
 ## 📊 Features Used
 
@@ -34,32 +34,37 @@ Early detection of diabetes is crucial for improving health outcomes. This proje
 1. Data Cleaning (handling zero values in BMI, glucose, etc.)
 2. Data Scaling using `StandardScaler`
 3. Train-Test Split (80/20)
-4. SVM Model Training (`sklearn.svm.SVC`)
+4. Random Forest Model Training 
 5. Evaluation using F1-score and Confusion Matrix
 6. ## 🧪 Sample Code Snippet
 
 ```python
-from sklearn.svm import SVC
-from sklearn.preprocessing import StandardScaler
+from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import classification_report
+from sklearn.metrics import classification_report, confusion_matrix
 
-# 2. Split data FIRST (This keeps the test data hidden)
+# 1. Feature Selection (Dropping noisy features based on importance)
+# We found SkinThickness and Insulin were adding noise/overfitting
+X = diabetes.drop(columns=['Outcome', 'SkinThickness', 'Insulin', 'BloodPressure'], axis=1)
+y = diabetes['Outcome']
+
+# 2. Split data FIRST 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, stratify=y, random_state=2)
 
-# 3. Standardize data SECOND
-scaler = StandardScaler()
+# 3. Random Forest Model with Regularization
+# We use max_depth and min_samples_leaf to prevent the 1.0 Training Accuracy issue
+model = RandomForestClassifier(
+    n_estimators=100,
+    max_depth=4, 
+    min_samples_leaf=5,
+    class_weight='balanced',  # Helps improve the F1-Score for the minority class
+    random_state=2
+)
 
-# Fit the scaler ONLY on training data
-X_train = scaler.fit_transform(X_train)
-
-# Transform the test data using the training mean/std (DO NOT FIT ON TEST)
-X_test = scaler.transform(X_test)
-
-# SVM model
-model = SVC(kernel='rbf', C=1)
 model.fit(X_train, y_train)
 
-# Evaluation
+# 4. Evaluation
 y_pred = model.predict(X_test)
+print(f"Training Accuracy: {model.score(X_train, y_train):.4f}")
+print(f"Test Accuracy: {model.score(X_test, y_test):.4f}")
 print(classification_report(y_test, y_pred))
