@@ -1,4 +1,4 @@
-# Diascan.ai 🩺 - Diabetes Prediction System for Females using SVM
+# Diascan.ai 🩺 - Diabetes Prediction System for Females using RFC
 
 **Diascan.ai** is a machine learning project focused on predicting diabetes in female patients using data from the PIMA Indian Diabetes dataset. The model is built with a Random Forest  and optimized for medical relevance, using proper feature scaling and metric-based evaluation.
 
