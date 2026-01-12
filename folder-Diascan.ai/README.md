@@ -58,7 +58,7 @@ model = RandomForestClassifier(
     max_depth=4, 
     min_samples_leaf=5,
     class_weight='balanced',  # Helps improve the F1-Score for the minority class
-    random_state=2
+    random_state=42
 )
 
 model.fit(X_train, y_train)
