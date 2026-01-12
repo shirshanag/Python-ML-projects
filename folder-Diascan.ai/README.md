@@ -44,12 +44,17 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report
 
-# Scaling
-scaler = StandardScaler()
-X_scaled = scaler.fit_transform(X)
+# 2. Split data FIRST (This keeps the test data hidden)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, stratify=y, random_state=2)
 
-# Train-test split
-X_train, X_test, y_train, y_test = train_test_split(X_scaled, y, test_size=0.2, random_state=42)
+# 3. Standardize data SECOND
+scaler = StandardScaler()
+
+# Fit the scaler ONLY on training data
+X_train = scaler.fit_transform(X_train)
+
+# Transform the test data using the training mean/std (DO NOT FIT ON TEST)
+X_test = scaler.transform(X_test)
 
 # SVM model
 model = SVC(kernel='rbf', C=1)
